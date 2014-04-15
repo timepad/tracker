@@ -1,0 +1,9 @@
+h3 Активность
+
+p.text-mutedt Здесь отображается текущая активность по всем проектам
+
+hr
+
+ul.list-group
+  - @notifications.each do |notification| 
+    li.list-group-item = notification.subject.title

@@ -1,0 +1,44 @@
+.navbar.navbar-inverse.navbar-static-top.navbar_customized role='navigation' 
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Информационная панель', root_url, :class => 'navbar-brand'
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to root_url, :"data-toggle" => 'tooltip', :"data-placement" => 'bottom', 
+            :title => 'Администрирование', :id => 'admin_area_tooltip' do
+
+            = icon 'cogs'
+        li
+          = link_to root_url, :"data-toggle" => 'tooltip', :"data-placement" => 'bottom', 
+            :title => 'Профиль', :id => 'user_profile_tooltip' do
+
+            = icon 'user'
+        li
+          = link_to root_url, :"data-toggle" => 'tooltip', :"data-placement" => 'bottom', 
+            :title => 'Выйти', :id => 'logout_tooltip' do
+
+            = icon 'sign-out'
+        li
+          a href="#"
+            img alt="User activity" src="http://www.gravatar.com/avatar/a58bf98c3b48b46fe247f4372c898eb2?s=18"
+      form.navbar-form.navbar-right
+        input.form-control placeholder="Поиск..." type="text"
+
+nav.navbar.navbar-default.navbar-static-top.navbar-collapse.collapse
+  .container
+    ul.nav.navbar-nav.nav-justified
+      li
+        = link_to root_url do
+          i.fa.fa-home.fa-lg
+      li
+        = link_to 'Проекты', projects_dashboard_url
+      li
+        = link_to 'Задачи', issues_dashboard_url
+      li
+        a href="#"  Заявки

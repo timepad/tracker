@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: issues_tracker_development
+  username: issues_tracker
+  password: hardpass
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: issues_tracker_test
+  username: issues_tracker
+  password: hardpass

@@ -1,0 +1,9 @@
+h3 Задачи
+
+p.text-mutedt Здесь отображаются задачи по всем проектам
+
+hr
+
+ul.list-group
+  - @issues.each do |issue| 
+    li.list-group-item = issue.title

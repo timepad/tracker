@@ -1,0 +1,9 @@
+h3 Проекты
+
+p.text-mutedt Все проекты, которые вы можете просматривать
+
+hr
+
+ul.list-group
+  - @projects.each do |project| 
+    li.list-group-item = project.name
