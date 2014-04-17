@@ -1,9 +1,27 @@
 h3 Проекты
 
-p.text-mutedt Все проекты, которые вы можете просматривать
+p.text-muted Все проекты, которые вы можете просматривать
 
 hr
 
-ul.list-group
-  - @projects.each do |project| 
-    li.list-group-item = project.name
+#projects
+  span 
+    | Загружаются проекты из Гитхаба &nbsp;
+    .fa.fa-refresh.fa-spin
+
+javascript:
+  $(function() {
+    $.ajax({ 
+      url: '#{ ajax_projects_dashboard_url }',
+      type: 'GET',
+      complete: function(e) {
+        if (e.status == 200) {
+          $('#projects').replaceWith(e.responseText)
+        } else if (e.status == 500) {
+          alert('Что-то пошло не так');
+        } else if (e.status == 403) {
+          alert('Вы не авторизованы');
+        }
+      }
+    });
+  });

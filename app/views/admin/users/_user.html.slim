@@ -1,0 +1,23 @@
+li.list-group-item
+  = icon 'user'
+  | &nbsp;
+  = link_to user.name, admin_user_url(user)
+  | &nbsp;
+  - if user.admin? 
+    strong 
+      | (Admin)
+  .pull-right
+    = mail_to user.email do
+      = icon 'envelope'
+      | &nbsp;
+      = user.email
+    
+    | &nbsp;
+
+    = link_to 'Редактировать', edit_admin_user_url(user), :class => 'btn btn-default btn-xs'
+
+    - if current_user.email != user.email
+      | &nbsp;
+
+      = link_to 'Удалить', admin_user_url(user), :class => 'btn btn-default btn-xs btn-danger', \
+        :method => 'delete', :data => { :confirm => 'Вы уверены?' }

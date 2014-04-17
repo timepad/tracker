@@ -1,0 +1,14 @@
+.row
+  .col-md-3
+    ul.nav.nav-pills.nav-stacked
+      li.active 
+        a href='#' Все
+      li 
+        a href='#' Администраторы
+
+  .col-md-9
+    .list-group
+      li.list-group-item.list-group-item-info 
+        | Пользователи
+        .pull-right = link_to 'Новый пользователь', new_admin_user_url, :class => 'btn btn-default btn-xs btn-success'
+      = render @users

@@ -1,0 +1,14 @@
+h3 
+  = @user.name
+  | &nbsp;
+  | → &nbsp;
+  = icon 'edit'
+  | &nbsp;Редактировать пользователя
+
+hr
+
+- if @user.errors.present?
+  - @user.errors.full_messages.each do |error|
+    .alert.alert-danger = error
+
+= render 'form', :user => @user

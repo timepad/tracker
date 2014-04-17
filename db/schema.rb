@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414162528) do
+ActiveRecord::Schema.define(version: 20140417110753) do
+
+  create_table "projects", force: true do |t|
+    t.string   "github_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requests", force: true do |t|
+    t.string   "title",      default: "", null: false
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +39,12 @@ ActiveRecord::Schema.define(version: 20140414162528) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
+    t.string   "name",                   default: "", null: false
+    t.string   "skype"
+    t.string   "vk"
+    t.string   "twitter"
+    t.string   "facebook"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

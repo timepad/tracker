@@ -1,0 +1,13 @@
+.row
+  .col-md-4.col-md-offset-4
+    h3 Забыли ваш пароль?
+
+    = form_for(resource, as: resource_name, url: password_path(resource_name), :html => { :method => :post }) do |f|
+      = f.email_field :email, :autofocus => true, :class => 'form-control', :placeholder => 'Email'
+
+      br
+
+      = f.submit 'Сбросить пароль', :class => 'btn btn-success'
+
+      hr
+        p.test-muted Уже есть логин и пароль? Тогда можете #{ link_to 'залониться', new_user_session_url }

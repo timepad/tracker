@@ -1,0 +1,11 @@
+h3
+  = icon 'plus'
+  | &nbsp;Новый пользователь
+
+hr
+
+- if @user.errors.present?
+  - @user.errors.full_messages.each do |error|
+    .alert.alert-danger = error
+
+= render 'form', :user => @user

@@ -1,0 +1,12 @@
+li.list-group-item
+  = link_to request.title, admin_request_url(request)
+
+  | &nbsp;
+
+  .pull-right
+    = link_to 'Редактировать', edit_admin_request_url(request), :class => 'btn btn-default btn-xs'
+
+    | &nbsp;
+
+    = link_to 'Удалить', admin_request_url(request), :class => 'btn btn-default btn-xs btn-danger', \
+      :method => 'delete', :data => { :confirm => 'Вы уверены?' }

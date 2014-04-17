@@ -1,0 +1,12 @@
+nav.navbar.navbar-default.navbar-static-top.navbar-collapse.collapse
+  .container
+    ul.nav.navbar-nav.nav-justified
+      li
+        = link_to root_url do
+          i.fa.fa-home.fa-lg
+      li
+        = link_to 'Проекты', projects_dashboard_url
+      li
+        = link_to 'Задачи', issues_dashboard_url
+      li
+        = link_to 'Заявки', requests_dashboard_url

@@ -1,0 +1,11 @@
+h3
+  = icon 'plus'
+  | &nbsp;Новый проект
+
+hr
+
+- if @project.errors.present?
+  - @project.errors.full_messages.each do |error|
+    .alert.alert-danger = error
+
+= render 'form', :project => @project

@@ -1,9 +1,27 @@
 h3 Активность
 
-p.text-mutedt Здесь отображается текущая активность по всем проектам
+p.text-muted Здесь отображается текущая активность по всем проектам
 
 hr
 
-ul.list-group
-  - @notifications.each do |notification| 
-    li.list-group-item = notification.subject.title
+#activities
+  span 
+    | Загружаются уведомления из Гитхаба &nbsp;
+    .fa.fa-refresh.fa-spin
+
+javascript:
+  $(function() {
+    $.ajax({ 
+      url: '#{ ajax_issues_dashboard_url }',
+      type: 'GET',
+      complete: function(e) {
+        if (e.status == 200) {
+          $('#activities').replaceWith(e.responseText)
+        } else if (e.status == 500) {
+          alert('Что-то пошло не так');
+        } else if (e.status == 403) {
+          alert('Вы не авторизованы');
+        }
+      }
+    });
+  });

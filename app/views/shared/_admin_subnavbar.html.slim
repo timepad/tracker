@@ -1,0 +1,12 @@
+nav.navbar.navbar-default.navbar-static-top.navbar-collapse.collapse
+  .container
+    ul.nav.navbar-nav.nav-justified
+      li
+        = link_to admin_root_url do
+          i.fa.fa-home.fa-lg
+      li
+        = link_to 'Пользователи', admin_users_url
+      li
+        = link_to 'Проекты', admin_projects_url
+      li
+        = link_to 'Заявки', admin_requests_url

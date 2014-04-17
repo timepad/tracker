@@ -1,0 +1,14 @@
+h3 
+  = @project.github_url
+  | &nbsp;
+  | → &nbsp;
+  = icon 'edit'
+  | &nbsp;Редактировать проект
+
+hr
+
+- if @project.errors.present?
+  - @project.errors.full_messages.each do |error|
+    .alert.alert-danger = error
+
+= render 'form', :project => @project

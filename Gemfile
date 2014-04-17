@@ -18,6 +18,7 @@ gem 'bootstrap-sass'
 gem 'octokit'
 gem 'font-awesome-sass'
 gem 'faraday-http-cache'
+gem 'kaminari'
 
 group :doc do
   gem 'sdoc', require: false

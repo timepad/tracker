@@ -1,0 +1,14 @@
+= form_for [:admin, project], :html => { :class => 'form-horizontal' } do |f|
+  h5 Данные проекта
+
+  hr
+
+  .form-group
+    = f.label 'Адрес в Гитхабе', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.text_field :github_url, :autofocus => true, :class => 'form-control'
+
+  hr
+
+  = f.submit project.persisted? ? 'Отредактировать' : 'Создать', :class => 'btn btn-success'

@@ -1,0 +1,62 @@
+= form_for [:admin, user], :html => { :class => 'form-horizontal' } do |f|
+  h5 Учётная запись
+
+  hr
+
+  .form-group
+    = f.label 'Имя', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.text_field :name, :autofocus => true, :class => 'form-control'
+
+  .form-group
+    = f.label 'Емейл', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.email_field :email, :class => 'form-control', :autocomplete =>'off'
+
+  hr
+
+  h5 Пароль
+
+  hr
+
+  .form-group
+    = f.label 'Пароль', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.password_field :password, :autocomplete => 'off', :class => 'form-control', :autocomplete => 'off'
+
+  hr
+
+  h5 Профиль
+
+  hr
+
+  .form-group
+    = f.label 'Skype', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.text_field :skype, :autofocus => false, :class => 'form-control'
+
+  .form-group
+    = f.label 'Вконтакте', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.text_field :vk, :autofocus => false, :class => 'form-control'
+
+  .form-group
+    = f.label 'twitter', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.text_field :twitter, :autofocus => false, :class => 'form-control'
+  
+  .form-group
+    = f.label 'facebook', :class => 'col-sm-2 control-label'
+
+    .col-sm-10
+      = f.text_field :facebook, :autofocus => false, :class => 'form-control'
+
+  hr
+
+  = f.submit user.persisted? ? 'Отредактировать' : 'Создать', :class => 'btn btn-success'

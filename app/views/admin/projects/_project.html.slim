@@ -1,0 +1,12 @@
+li.list-group-item
+  = link_to project.github_url, admin_project_url(project)
+
+  | &nbsp;
+
+  .pull-right
+    = link_to 'Редактировать', edit_admin_project_url(project), :class => 'btn btn-default btn-xs'
+
+    | &nbsp;
+
+    = link_to 'Удалить', admin_project_url(project), :class => 'btn btn-default btn-xs btn-danger', \
+      :method => 'delete', :data => { :confirm => 'Вы уверены?' }
