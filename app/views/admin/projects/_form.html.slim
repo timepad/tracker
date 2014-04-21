@@ -4,10 +4,10 @@
   hr
 
   .form-group
-    = f.label 'Адрес в Гитхабе', :class => 'col-sm-2 control-label'
+    = f.label 'Относительный адрес в Гитхабе', :class => 'col-sm-3 control-label'
 
-    .col-sm-10
-      = f.text_field :github_url, :autofocus => true, :class => 'form-control'
+    .col-sm-9
+      = f.text_field :github_path, :autofocus => true, :class => 'form-control'
 
   hr
 

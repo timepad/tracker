@@ -1,9 +1,3 @@
-h3 Активность
-
-p.text-muted Здесь отображается текущая активность по всем проектам
-
-hr
-
 #activities
   span 
     | Загружаются уведомления из Гитхаба &nbsp;
@@ -12,7 +6,7 @@ hr
 javascript:
   $(function() {
     $.ajax({ 
-      url: '#{ ajax_issues_dashboard_url }',
+      url: '#{ ajax_activities_dashboard_url }',
       type: 'GET',
       complete: function(e) {
         if (e.status == 200) {

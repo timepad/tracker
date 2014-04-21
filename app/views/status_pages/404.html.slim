@@ -1,0 +1,28 @@
+doctype html
+html lang='ru'
+  head
+    meta charset='utf-8'
+    
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+
+    meta http-equiv='X-UA-Compatible' content='IE=Edge'
+
+    title К сожалению, на сайте не существует такого материала (404)
+
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
+
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  body
+    .container
+      .row.text-center
+        h3 Результат запроса
+      
+        h1 404
+      
+        p К сожалению, такого материала не существует
+
+        = link_to 'Перейти на сайт', root_url

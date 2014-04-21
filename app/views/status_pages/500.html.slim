@@ -1,0 +1,29 @@
+doctype html
+html lang='ru'
+  head
+    meta charset='utf-8'
+    
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+
+    meta http-equiv='X-UA-Compatible' content='IE=Edge'
+
+    title Возникли неполадки в связи с зарпашиваемым вами материалом (500)
+
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
+
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  body
+    .container
+      .row.text-center
+        h3 Результат запроса
+      
+        h1 500
+      
+        p Просим прощения за возникшие неудобства,
+        но на сайте возникли неполадки в связи с зарпашиваемым вами материалом.
+
+        = link_to 'Перейти на сайт', root_url

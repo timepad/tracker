@@ -1,1 +1,44 @@
-li.list-group-item = issue.title
+h5
+  span.text-muted 
+    | #
+    = issue.number
+
+  | &nbsp;
+
+  = image_tag (issue.user.avatar_url + 's=20')
+  
+  | &nbsp;
+  
+  = issue.title
+
+span.text-muted
+  | Назначено на
+
+  | &nbsp;
+
+  = image_tag (issue.assignee.avatar_url + 's=20') if issue.assignee.try(:avatar_url).present?
+
+  | &nbsp;
+
+  = issue.assignee.login if issue.assignee.try(:login).present?
+
+  | &nbsp;
+
+  = icon 'comments'
+
+  | &nbsp;
+
+  = issue.comments
+
+  | &nbsp;
+  - issue.labels.each_with_index do |label, index|
+    .label.label-default id = 'label_#{ issue.id + index }'
+      css:
+        #label_#{ issue.id + index } {
+          background-color: ##{ label.color };
+        }
+      = label.name
+
+    | &nbsp;
+
+hr

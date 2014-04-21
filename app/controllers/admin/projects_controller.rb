@@ -35,6 +35,6 @@ class Admin::ProjectsController < AdminController
 
   private
   def permitted_params
-    params.require(:project).permit(:github_url)
+    params.require(:project).permit(:github_path)
   end
 end

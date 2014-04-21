@@ -1,1 +1,12 @@
-li.list-group-item = project.name
+= image_tag (project.organization.avatar_url + 's=20')
+  
+h4 = project.name
+
+.text-muted
+  | Количество открытых тикетов &nbsp;
+  strong = project.open_issues_count
+
+.text-muted
+  | Последнее обновление кода проекта &nbsp;
+  strong = l project.updated_at, :format => :short
+hr

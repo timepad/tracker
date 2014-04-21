@@ -31,5 +31,9 @@ module IssuesTracker
     config.i18n.default_locale = :ru
 
     I18n.enforce_available_locales = false
+
+    config.after_initialize do |app|
+      app.routes.append{ get '*a', :to => 'application#render_404' } unless config.consider_all_requests_local
+    end
   end
 end

@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417110753) do
+ActiveRecord::Schema.define(version: 20140421140558) do
 
   create_table "projects", force: true do |t|
-    t.string   "github_url"
+    t.string   "github_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140417110753) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|

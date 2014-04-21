@@ -1,1 +1,10 @@
-li.list-group-item = notification.subject.title
+.pull-left 
+  = image_tag (notification.repository.owner.avatar_url + 's=20')
+  
+| &nbsp;
+
+= notification.subject.title
+
+.pull-right = l notification.updated_at, :format => :short
+
+hr

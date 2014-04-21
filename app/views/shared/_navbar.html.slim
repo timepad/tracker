@@ -12,17 +12,17 @@
         - if current_user.admin?
           li
             = link_to admin_root_url, :"data-toggle" => 'tooltip', :"data-placement" => 'bottom', 
-              :title => 'Администрирование', :id => 'admin_area_tooltip' do
+              :title => 'Администрирование', :class => 'has_tooltip' do
 
               = icon 'cogs'
         li
           = link_to edit_user_url(current_user), :"data-toggle" => 'tooltip', :"data-placement" => 'bottom', 
-            :title => 'Профиль', :id => 'user_profile_tooltip' do
+            :title => 'Профиль', :class => 'has_tooltip' do
 
             = icon 'user'
         li
           = link_to destroy_user_session_url, :"data-toggle" => 'tooltip', :"data-placement" => 'bottom', 
-            :title => 'Выйти', :id => 'logout_tooltip' do
+            :title => 'Выйти', :class => 'has_tooltip' do
 
             = icon 'sign-out'
         li

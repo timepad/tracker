@@ -1,9 +1,7 @@
 function init_tooltips() {
-  $('#admin_area_tooltip').tooltip({ container: 'a'});
-
-  $('#user_profile_tooltip').tooltip({ container: 'a'});
-
-  $('#logout_tooltip').tooltip({ container: 'a'});
+  if ($('.has_tooltip').size() > 0) {
+    $('.has_tooltip').tooltip({ container: 'a'});
+  }
 }
 
 $(function() {

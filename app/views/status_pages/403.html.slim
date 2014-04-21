@@ -1,0 +1,28 @@
+doctype html
+html lang='ru'
+  head
+    meta charset='utf-8'
+    
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+
+    meta http-equiv='X-UA-Compatible' content='IE=Edge'
+
+    title Выполнение этого действия невозможно без авторизации (403)
+
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
+
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  body
+    .container
+      .row.text-center
+        h3 Результат запроса
+      
+        h1 403
+      
+        p Выполнение этого действия невозможно без авторизации.
+
+        = link_to 'Перейти на сайт', root_url

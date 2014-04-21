@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
     @issues = []
 
     Project.all.each do |project|
-      @issues += github_client.list_issues(project.github_url)
+      @issues += github_client.list_issues(project.github_path)
     end
 
     render :layout => false
@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
     @projects = []
 
     Project.all.each do |project|
-      @projects << github_client.repository(project.github_url)
+      @projects << github_client.repository(project.github_path)
     end
 
     render :layout => false
@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
     @notifications = []
 
     Project.all.each do |project|
-      @notifications += github_client.repository_notifications(project.github_url)
+      @notifications += github_client.repository_notifications(project.github_path, { :all => true })
     end
 
     render :layout => false
