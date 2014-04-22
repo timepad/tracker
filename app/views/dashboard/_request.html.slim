@@ -1,1 +1,36 @@
-li.list-group-item = request.title
+div id = 'request_#{ request_object.id }'
+  .pull-left 
+    = link_to request_object.title, request_url(request_object)
+    
+  | &nbsp;
+
+  span.text-muted
+    | Проект:
+
+    | &nbsp;
+
+    = request_object.project.github_path
+
+    | &nbsp;
+
+    | Засинхронизирована:
+
+    | &nbsp;
+
+    = request_object.synced? ? 'Да' : 'Нет'
+
+  - if can? :manage, request_object
+    .pull-right
+      - if !!(can? :sync, request_object) && !request_object.synced?
+        = link_to 'Синхронизировать', request_sync_url(request_object), :remote => true, :class => 'btn btn-success btn-xs'
+
+      | &nbsp;
+
+      = link_to 'Редактировать', edit_request_url(request_object), :class => 'btn btn-default btn-xs'
+
+      | &nbsp;
+
+      = link_to 'Удалить', request_url(request_object), :class => 'btn btn-default btn-xs btn-danger', \
+        :method => 'delete', :data => { :confirm => 'Вы уверены?' }
+
+hr

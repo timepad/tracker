@@ -11,9 +11,11 @@ FactoryGirl.define do
     content 'Can you release this cool stuff?'
 
     user
+
+    project
   end
 
   factory :project do
-    github_path 'project/name'
+    sequence(:github_path){ |n| "project_#{ n }/name" }
   end
 end

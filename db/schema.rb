@@ -11,21 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421140558) do
+ActiveRecord::Schema.define(version: 20140422160009) do
 
   create_table "projects", force: true do |t|
-    t.string   "github_path"
+    t.string   "github_path", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "projects", ["github_path"], name: "index_projects_on_github_path", unique: true, using: :btree
+
   create_table "requests", force: true do |t|
-    t.string   "title",      default: "", null: false
+    t.string   "title",           default: "", null: false
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",         default: 0,  null: false
+    t.integer  "project_id",      default: 0,  null: false
+    t.integer  "github_issue_id"
   end
+
+  add_index "requests", ["project_id"], name: "index_requests_on_project_id", using: :btree
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

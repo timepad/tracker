@@ -32,6 +32,6 @@ class DashboardController < ApplicationController
   end
 
   def requests
-    @requests = Request.order('created_at desc').page params[:page]
+    @requests = Request.order('created_at desc').includes(:project).page params[:page]
   end
 end

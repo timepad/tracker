@@ -4,10 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :github_client
 
   def github_client
-    @github_client ||= client = Octokit::Client.new(
-      :login => Rails.application.secrets.github_login,
-      :password => Rails.application.secrets.github_password
-    )
+    @github_client ||= client = Octokit::Client.new(:access_token => Rails.application.secrets.github_access_token)
   end
 
   unless Rails.application.config.consider_all_requests_local

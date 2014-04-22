@@ -1,0 +1,9 @@
+<% if @result.try(:number).present? %>
+  $('#request_#<%= @request.id %>').
+    replaceWith('<%= j render :partial => 'dashboard/request', :object => @request, :as => 'request_object' %>');
+
+  alert('Заявка синхронизирована');
+
+<% else %>
+  alert('Что-то пошло не так');
+<% end %>

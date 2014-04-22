@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show, :edit, :update]
 
+  resources :requests, :only => [:new, :show, :edit, :update, :destroy, :create] do
+    get :sync
+  end
+
   resource :dashboard, :controller => 'dashboard', :only => :show do
     member do
       get :projects

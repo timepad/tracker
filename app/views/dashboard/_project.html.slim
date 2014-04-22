@@ -1,4 +1,4 @@
-= image_tag (project.organization.avatar_url + 's=20')
+= image_tag (project.organization.avatar_url + 's=20') if project.organization.try(:avatar_url).present?
   
 h4 = project.name
 
@@ -8,5 +8,5 @@ h4 = project.name
 
 .text-muted
   | Последнее обновление кода проекта &nbsp;
-  strong = l project.updated_at, :format => :short
+  strong = l project.updated_at, :format => :long
 hr

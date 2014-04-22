@@ -1,0 +1,14 @@
+h3 
+  = @request.title
+  | &nbsp;
+  | → &nbsp;
+  = icon 'edit'
+  | &nbsp;Редактировать заявку
+
+hr
+
+- if @request.errors.present?
+  - @request.errors.full_messages.each do |error|
+    .alert.alert-danger = error
+
+= render 'form', :request => @request

@@ -1,12 +1,12 @@
 nav.navbar.navbar-default.navbar-static-top.navbar-collapse.collapse
   .container
     ul.nav.navbar-nav.nav-justified
-      li
+      li class = '#{ 'active' if params[:controller] == 'admin/dashboard' && params[:action] == 'show' }'
         = link_to admin_root_url do
           i.fa.fa-home.fa-lg
-      li
+      li class = '#{ 'active' if params[:controller] == 'admin/users' }'
         = link_to 'Пользователи', admin_users_url
-      li
+      li class = '#{ 'active' if params[:controller] == 'admin/projects' }'
         = link_to 'Проекты', admin_projects_url
-      li
+      li class = '#{ 'active' if params[:controller] == 'admin/requests' }'
         = link_to 'Заявки', admin_requests_url

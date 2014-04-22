@@ -1,8 +1,12 @@
-h3 Заявки
+h3
+  | Заявки
+
+  | &nbsp;
+
+  = link_to 'Новая заявка', new_request_url, :class => 'btn btn-default btn-xs btn-success'
 
 p.text-muted Все созданные заявки
 
 hr
 
-ul.list-group
-  = render :partial => 'request', :collection => @requests
+= render :partial => 'request', :collection => @requests, :as => 'request_object' 

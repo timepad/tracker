@@ -1,12 +1,12 @@
 nav.navbar.navbar-default.navbar-static-top.navbar-collapse.collapse
   .container
     ul.nav.navbar-nav.nav-justified
-      li
+      li class = '#{ 'active' if params[:controller] == 'dashboard' && params[:action] == 'show' }'
         = link_to root_url do
           i.fa.fa-home.fa-lg
-      li
+      li class = '#{ 'active' if params[:action].include? 'project' }'
         = link_to 'Проекты', projects_dashboard_url
-      li
+      li class = '#{ 'active' if params[:action].include? 'issues' }'
         = link_to 'Задачи', issues_dashboard_url
-      li
+      li class = '#{ 'active' if (params[:action].include?('request') || params[:controller].include?('request')) }'
         = link_to 'Заявки', requests_dashboard_url
