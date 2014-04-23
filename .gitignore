@@ -11,6 +11,8 @@
 
 /config/secrets.yml
 
+/config/deploy/production.rb
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

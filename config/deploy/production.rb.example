@@ -6,9 +6,9 @@ set :stage, :production
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, ["deployer@##{ Rails.application.secrets.production_ip }"]
-role :web, ["deployer@##{ Rails.application.secrets.production_ip }"]
-role :db, ["deployer@##{ Rails.application.secrets.production_ip }"]
+role :app, %w{ deployer@123.45.67.89 }
+role :web, %w{ deployer@123.45.67.89 }
+role :db,  %w{ deployer@123.45.67.89 }
 
 
 # Extended Server Syntax
@@ -17,7 +17,7 @@ role :db, ["deployer@##{ Rails.application.secrets.production_ip }"]
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server Rails.application.secrets.production_ip, user: 'deployer', roles: %w{web app}
+server '123.45.67.89', user: 'deployer', roles: %w{web app}
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.1@issues_tracker'
@@ -37,7 +37,7 @@ set :rvm_ruby_version, '2.1.1@issues_tracker'
 #
 # And/or per server (overrides global)
 # ------------------------------------
-server Rails.application.secrets.production_ip,
+server '123.45.67.89',
   user: 'deployer',
   roles: %w{web app},
   ssh_options: {

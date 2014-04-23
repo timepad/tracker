@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 7138bbb401159b116dda4ec9dd4b375dc1d2e59a
+  revision: 07011eb7fa656b4b16de33fa8e6b161406f99d82
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -44,7 +44,7 @@ GEM
       sass (~> 3.2)
     builder (3.2.2)
     cancancan (1.7.1)
-    capistrano (3.2.0)
+    capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)

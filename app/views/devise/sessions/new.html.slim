@@ -12,9 +12,11 @@
       br
 
       .checkbox 
-        = f.check_box :remember_me 
+        label
+          | Запомнить меня
 
-        = f.label 'Запомнить меня'
+          = f.check_box :remember_me
+
       div
         = f.submit 'Войти', :class => 'btn btn-success'
 
