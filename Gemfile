@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 
 gem 'pg'
 gem 'russian'
@@ -19,6 +19,7 @@ gem 'octokit'
 gem 'font-awesome-sass'
 gem 'faraday-http-cache'
 gem 'kaminari'
+gem 'coveralls', require: false
 
 group :doc do
   gem 'sdoc', require: false
@@ -44,6 +45,7 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', :require => false
   gem 'shoulda-matchers'
   gem 'database_cleaner'
 end

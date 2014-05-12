@@ -8,8 +8,9 @@
 * Просматривать текущие тикеты(issues) на гитхабе
 * Создавать заявки, синхронизировать их с гитхабом и многое другое
 
-### Code status
-[![Coverage Status](https://coveralls.io/repos/timepad/tracker/badge.png)](https://coveralls.io/r/timepad/tracker)
+### Покрытие кода
+
+Вы можете запустить тесты через команду rake spec, а затем посмотреть результаты в html файле path/to/tracker/coverage/index.html
 
 ### Требования
 
