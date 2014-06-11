@@ -1,12 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :github_client
-
-  def github_client
-    @github_client ||= client = Octokit::Client.new(:access_token => Rails.application.secrets.github_access_token)
-  end
-
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, :with => lambda { |exception| render_status 500 }
 

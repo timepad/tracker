@@ -1,0 +1,8 @@
+.row
+  .col-md-3
+    = render 'story_points_sidebar'
+
+  .col-md-9
+    #current_story_points
+      - @story_points.group_by(&:user_github_login).each do |user, story_points|
+        = render 'user', :user => user, :story_points => story_points

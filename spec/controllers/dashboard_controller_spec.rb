@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DashboardController do
+describe DashboardController, :type => :controller do
   let(:user) { create :user }
 
   it { should route(:get, '/').to(:action => :show) }
@@ -68,12 +68,12 @@ describe DashboardController do
       it { should render_template :show }
     end
 
-    describe 'GET ajax_activities' do
-      before { get :ajax_activities }
+    describe 'GET ajax_activities as JS' do
+      before { xhr :get, :ajax_activities, :format => :js }
 
       it { should render_template :ajax_activities }
 
-      it { assigns(:notifications).should_not be_nil }
+      it { expect(assigns(:notifications)).not_to be_nil }
     end
 
     describe 'GET issues' do
@@ -82,12 +82,12 @@ describe DashboardController do
       it { should render_template :issues }
     end
 
-    describe 'GET ajax_issues' do
-      before { get :ajax_issues }
+    describe 'GET ajax_issues as JS' do
+      before { xhr :get, :ajax_issues, :format => :js }
 
       it { should render_template :ajax_issues }
 
-      it { assigns(:issues).should_not be_nil }
+      it { expect(assigns(:issues)).not_to be_nil }
     end
 
     describe 'GET projects' do
@@ -96,12 +96,12 @@ describe DashboardController do
       it { should render_template :projects }
     end
 
-    describe 'GET ajax_projects' do
-      before { get :ajax_projects }
+    describe 'GET ajax_projects as JS' do
+      before { xhr :get, :ajax_projects, :format => :js }
 
       it { should render_template :ajax_projects }
 
-      it { assigns(:projects).should_not be_nil }
+      it { expect(assigns(:projects)).not_to be_nil }
     end
 
     describe 'GET requests' do
@@ -109,7 +109,7 @@ describe DashboardController do
 
       it { should render_template :requests }
 
-      it { assigns(:requests).should_not be_nil }
+      it { expect(assigns(:requests)).not_to be_nil }
     end
   end
 end

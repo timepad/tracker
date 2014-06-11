@@ -10,3 +10,5 @@ nav.navbar.navbar-default.navbar-static-top.navbar-collapse.collapse
         = link_to 'Проекты', admin_projects_url
       li class = '#{ 'active' if params[:controller] == 'admin/requests' }'
         = link_to 'Заявки', admin_requests_url
+      li class = '#{ 'active' if params[:controller] == 'admin/story_points' }'
+        = link_to 'Story points', admin_story_points_url

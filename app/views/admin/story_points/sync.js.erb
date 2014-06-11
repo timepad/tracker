@@ -1,0 +1,5 @@
+<% if @story_points.empty? %>
+  $('#current_story_points').html('Story points не найдены');
+<% else %>
+  $('#current_story_points').html('<%= j render 'all_story_points', :story_points => @story_points %>');
+<% end %>

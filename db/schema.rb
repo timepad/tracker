@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422160009) do
+ActiveRecord::Schema.define(version: 20140513130608) do
 
   create_table "projects", force: true do |t|
     t.string   "github_path", default: "", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140422160009) do
     t.datetime "updated_at"
   end
 
-  add_index "projects", ["github_path"], name: "index_projects_on_github_path", unique: true, using: :btree
+  add_index "projects", ["github_path"], name: "index_projects_on_github_path", unique: true
 
   create_table "requests", force: true do |t|
     t.string   "title",           default: "", null: false
@@ -31,8 +31,25 @@ ActiveRecord::Schema.define(version: 20140422160009) do
     t.integer  "github_issue_id"
   end
 
-  add_index "requests", ["project_id"], name: "index_requests_on_project_id", using: :btree
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+  add_index "requests", ["project_id"], name: "index_requests_on_project_id"
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id"
+
+  create_table "story_points", force: true do |t|
+    t.text     "title"
+    t.string   "user_github_login",      null: false
+    t.string   "user_github_avatar_url"
+    t.integer  "user_id"
+    t.string   "story_point_size"
+    t.datetime "github_closed_at"
+    t.datetime "github_merged_at"
+    t.string   "story_point_type"
+    t.string   "github_html_url",        null: false
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "story_points", ["project_id"], name: "index_story_points_on_project_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -55,7 +72,7 @@ ActiveRecord::Schema.define(version: 20140422160009) do
     t.string   "facebook"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

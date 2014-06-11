@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::UsersController do
+describe Admin::UsersController, :type => :controller do
   it { should be_kind_of AdminController }
 
   let(:user) { create :user }
@@ -67,7 +67,7 @@ describe Admin::UsersController do
 
       it { should render_template :index }
 
-      it { assigns(:users).should_not be_nil }
+      it { expect(assigns(:users)).not_to be_nil }
     end
 
     describe 'POST create' do
@@ -89,7 +89,7 @@ describe Admin::UsersController do
 
       it { should render_template :new }
 
-      it { assigns(:user).should_not be_nil }
+      it { expect(assigns(:user)).not_to be_nil }
     end
 
     describe 'GET edit' do
@@ -97,7 +97,7 @@ describe Admin::UsersController do
 
       it { should render_template :edit }
 
-      it { assigns(:user).should_not be_nil }
+      it { expect(assigns(:user)).not_to be_nil }
     end
 
     describe 'GET show' do
@@ -105,7 +105,7 @@ describe Admin::UsersController do
 
       it { should render_template :show }
 
-      it { assigns(:user).should_not be_nil }
+      it { expect(assigns(:user)).not_to be_nil }
     end
 
     describe 'PATCH update' do

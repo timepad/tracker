@@ -5,30 +5,24 @@ class DashboardController < ApplicationController
     @issues = []
 
     Project.all.each do |project|
-      @issues += github_client.list_issues(project.github_path)
+      @issues += Rails.configuration.github_client.list_issues(project.github_path)
     end
-
-    render :layout => false
   end
 
   def ajax_projects
     @projects = []
 
     Project.all.each do |project|
-      @projects << github_client.repository(project.github_path)
+      @projects << Rails.configuration.github_client.repository(project.github_path)
     end
-
-    render :layout => false
   end
 
   def ajax_activities
     @notifications = []
 
     Project.all.each do |project|
-      @notifications += github_client.repository_notifications(project.github_path, { :all => true })
+      @notifications += Rails.configuration.github_client.repository_notifications(project.github_path, { :all => true })
     end
-
-    render :layout => false
   end
 
   def requests

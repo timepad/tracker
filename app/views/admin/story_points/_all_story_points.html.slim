@@ -1,0 +1,15 @@
+.list-group
+  li.list-group-item.list-group-item-info
+    | Story points
+    | &nbsp;
+    i.fa.fa-question-circle.has_help_tooltip[data-toggle="tooltip" data-placement="top"
+      title='В трекере story points представляют собой подзадачи, которые парсятся из описания пулл реквеста']
+
+    .pull-right
+      = link_to 'Синхронизовать story points', sync_admin_story_points_url,
+        :class => 'btn btn-xs btn-success', :remote => true, :id => 'sync_story_points_link'
+
+  = render story_points
+
+= paginate story_points, :params => {:controller => 'admin/story_points', :action => 'index'},
+  :theme => 'twitter-bootstrap-3'

@@ -25,13 +25,13 @@ describe Request do
     describe 'when request is synced' do
       before { request.github_issue_id = 1 }
 
-      it { should be_true } 
+      it { is_expected.to be true } 
     end
 
     describe 'when request is synced' do
       before { request.github_issue_id = nil }
 
-      it { should be_false } 
+      it { is_expected.to be false } 
     end
   end
 end

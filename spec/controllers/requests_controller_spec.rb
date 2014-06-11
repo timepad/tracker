@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RequestsController do
+describe RequestsController, :type => :controller do
   let(:user) { create :user }
 
   let(:request) { create :request, :user_id => user.id }
@@ -85,7 +85,7 @@ describe RequestsController do
 
       it { should render_template :new }
 
-      it { assigns(:request).should_not be_nil }
+      it { expect(assigns(:request)).not_to be_nil }
     end
 
     describe 'GET edit' do
@@ -93,7 +93,7 @@ describe RequestsController do
 
       it { should render_template :edit }
 
-      it { assigns(:request).should_not be_nil }
+      it { expect(assigns(:request)).not_to be_nil }
     end
 
     describe 'GET show' do
@@ -101,7 +101,7 @@ describe RequestsController do
 
       it { should render_template :show }
 
-      it { assigns(:request).should_not be_nil }
+      it { expect(assigns(:request)).not_to be_nil }
     end
 
     describe 'PATCH update' do

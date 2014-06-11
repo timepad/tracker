@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.1'
 
-gem 'pg'
 gem 'russian'
 gem 'devise'
 gem 'devise-encryptable'
@@ -17,9 +16,10 @@ gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'octokit'
 gem 'font-awesome-sass'
-gem 'faraday-http-cache'
 gem 'kaminari'
-gem 'coveralls', require: false
+gem 'bootstrap-kaminari-views'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 group :doc do
   gem 'sdoc', require: false
@@ -27,6 +27,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'pg'
 end
 
 group :development, :test do
@@ -34,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'capybara'
+  gem 'sqlite3'
 end
 
 group :development do

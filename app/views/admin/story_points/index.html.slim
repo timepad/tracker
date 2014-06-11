@@ -1,0 +1,7 @@
+.row
+  .col-md-3
+    = render 'story_points_sidebar'
+
+  .col-md-9
+    #current_story_points
+      = render 'all_story_points', :story_points => @story_points

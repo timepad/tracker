@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe UsersController, :type => :controller do
   let(:user) { create :user }
 
   it { should route(:get, '/users/1').to(:action => :show, :id => 1) }
@@ -43,7 +43,7 @@ describe UsersController do
 
       it { should render_template :show }
 
-      it { assigns(:user).should_not be_nil }
+      it { expect(assigns(:user)).not_to be_nil }
     end
 
     describe 'GET edit' do
@@ -51,7 +51,7 @@ describe UsersController do
 
       it { should render_template :edit }
 
-      it { assigns(:user).should_not be_nil }
+      it { expect(assigns(:user)).not_to be_nil }
     end
 
     describe 'PATCH update' do

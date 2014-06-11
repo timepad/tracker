@@ -33,5 +33,11 @@ Rails.application.routes.draw do
     resources :requests
 
     resources :projects
+
+    resources :story_points, :only => :index do
+      get :sync, :users, :on => :collection
+    end
+
+    resources :changelogs, :only => :index
   end
 end

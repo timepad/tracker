@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::RequestsController do
+describe Admin::RequestsController, :type => :controller do
   it { should be_kind_of AdminController }
 
   let(:user) { create :user }
@@ -69,7 +69,7 @@ describe Admin::RequestsController do
 
       it { should render_template :index }
 
-      it { assigns(:requests).should_not be_nil }
+      it { expect(assigns(:requests)).not_to be_nil }
     end
 
     describe 'POST create' do
@@ -91,7 +91,7 @@ describe Admin::RequestsController do
 
       it { should render_template :new }
 
-      it { assigns(:request).should_not be_nil }
+      it { expect(assigns(:request)).not_to be_nil }
     end
 
     describe 'GET edit' do
@@ -99,7 +99,7 @@ describe Admin::RequestsController do
 
       it { should render_template :edit }
 
-      it { assigns(:request).should_not be_nil }
+      it { expect(assigns(:request)).not_to be_nil }
     end
 
     describe 'GET show' do
@@ -107,7 +107,7 @@ describe Admin::RequestsController do
 
       it { should render_template :show }
 
-      it { assigns(:request).should_not be_nil }
+      it { expect(assigns(:request)).not_to be_nil }
     end
 
     describe 'PATCH update' do

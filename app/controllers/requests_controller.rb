@@ -34,7 +34,8 @@ class RequestsController < ApplicationController
   def sync
     @request = Request.find params[:request_id]
 
-    @result = github_client.create_issue @request.project.github_path, @request.title, @request.content
+    @result = Rails.configuration.github_client.
+      create_issue @request.project.github_path, @request.title, @request.content
 
     @request.update_attribute :github_issue_id, @result.number if @result.try(:number).present?
   end

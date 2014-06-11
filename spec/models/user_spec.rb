@@ -17,7 +17,7 @@ describe User do
     describe 'when user is admin' do
       before { user.update_attribute 'role', 'admin' }
 
-      it { should be_true } 
+      it { is_expected.to be true } 
     end
   end
 end

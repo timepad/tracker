@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::DashboardController do
+describe Admin::DashboardController, :type => :controller do
   it { should be_kind_of AdminController }
 
   let(:user) { create :user }
@@ -27,17 +27,17 @@ describe Admin::DashboardController do
 
       it { should render_template :show }
 
-      it { assigns(:users_size).should_not be_nil }
+      it { expect(assigns(:users_size)).not_to be_nil }
 
-      it { assigns(:projects_size).should_not be_nil }
+      it { expect(assigns(:projects_size)).not_to be_nil }
 
-      it { assigns(:requests_size).should_not be_nil }
+      it { expect(assigns(:requests_size)).not_to be_nil }
 
-      it { assigns(:users).should_not be_nil }
+      it { expect(assigns(:users)).not_to be_nil }
 
-      it { assigns(:projects).should_not be_nil }
+      it { expect(assigns(:projects)).not_to be_nil }
 
-      it { assigns(:requests).should_not be_nil }
+      it { expect(assigns(:requests)).not_to be_nil }
     end
   end
 end

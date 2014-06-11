@@ -35,5 +35,7 @@ module IssuesTracker
     config.after_initialize do |app|
       app.routes.append{ get '*a', :to => 'application#render_404' } unless config.consider_all_requests_local
     end
+
+    config.github_client = Octokit::Client.new(:access_token => Rails.application.secrets.github_access_token)
   end
 end

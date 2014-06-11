@@ -1,0 +1,29 @@
+li.list-group-item
+  .container-fluid
+    .row
+      .col-md-10
+        = story_point.user_github_login
+        
+        | &nbsp;
+        
+        = image_tag story_point.user_github_avatar_url + 's=18'
+
+        | &nbsp;
+
+        .label.label-info
+          = story_point.story_point_type
+        
+        | &nbsp;
+
+        .label.label-info
+          = story_point.story_point_size
+
+        | &nbsp;
+
+        = link_to_if(story_point.title.present?, story_point.title, story_point.github_html_url) do
+          = link_to story_point.github_html_url, story_point.github_html_url
+
+        | &nbsp;
+
+      .col-md-2
+        = l story_point.github_closed_at, :format => :long

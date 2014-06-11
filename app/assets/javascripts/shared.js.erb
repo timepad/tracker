@@ -1,0 +1,95 @@
+function get_issues_from_github() {
+  if ($('#issues').size() > 0) {
+    $.ajax({ 
+      url: "<%= Rails.application.routes.url_helpers.ajax_issues_dashboard_path(:format => :js) %>", 
+      type: 'GET',
+      complete: function(e) {
+        if (e.status == 500) {
+          alert('Что-то пошло не так');
+        } else if (e.status == 403) {
+          alert('Вы не авторизованы');
+        }
+      }
+    });
+  }
+}
+
+function get_notifications_from_github() {
+  if ($('#activities').size() > 0) {
+    $.ajax({ 
+      url: "<%= Rails.application.routes.url_helpers.ajax_activities_dashboard_path(:format => :js) %>", 
+      type: 'GET',
+      complete: function(e) {
+        if (e.status == 500) {
+          alert('Что-то пошло не так');
+        } else if (e.status == 403) {
+          alert('Вы не авторизованы');
+        }
+      }
+    });
+  }
+}
+
+function get_projects_from_github() {
+  if ($('#projects').size() > 0) {
+    $.ajax({ 
+      url: "<%= Rails.application.routes.url_helpers.ajax_projects_dashboard_path(:format => :js) %>", 
+      type: 'GET',
+      complete: function(e) {
+        if (e.status == 500) {
+          alert('Что-то пошло не так');
+        } else if (e.status == 403) {
+          alert('Вы не авторизованы');
+        }
+      }
+    });
+  }
+}
+
+function init_tooltips() {
+  if ($('.has_tooltip').size() > 0) {
+    $('.has_tooltip').tooltip({ container: 'a'});
+  }
+}
+
+function init_help_tooltips() {
+  if ($('.has_help_tooltip').size() > 0) {
+    $('.has_help_tooltip').tooltip();
+  }
+}
+
+function init_sync_story_points() {
+  $('body').on('click', '#sync_story_points_link', function(e) {
+    $('#current_story_points').html('<center>' +
+      '<i class="fa fa-refresh fa-spin"></i>&nbsp;Синхронизируются story points' +
+      '</center>');
+  });
+}
+
+$(function() {
+  init_tooltips();
+
+  init_help_tooltips();
+
+  init_sync_story_points();
+
+  get_issues_from_github();
+
+  get_notifications_from_github();
+
+  get_projects_from_github();
+});
+
+$(window).bind('page:load', function() {
+  init_tooltips();
+
+  init_help_tooltips();
+
+  init_sync_story_points();
+
+  get_issues_from_github();
+
+  get_notifications_from_github();
+
+  get_projects_from_github();
+})

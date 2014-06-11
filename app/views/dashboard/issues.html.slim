@@ -8,20 +8,3 @@ hr
   span 
     | Загружаются задачи из Гитхаба &nbsp;
     .fa.fa-refresh.fa-spin
-
-javascript:
-  $(function() {
-    $.ajax({ 
-      url: '#{ ajax_issues_dashboard_url }',
-      type: 'GET',
-      complete: function(e) {
-        if (e.status == 200) {
-          $('#issues').replaceWith(e.responseText)
-        } else if (e.status == 500) {
-          alert('Что-то пошло не так');
-        } else if (e.status == 403) {
-          alert('Вы не авторизованы');
-        }
-      }
-    });
-  });
