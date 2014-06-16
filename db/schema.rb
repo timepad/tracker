@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513130608) do
+ActiveRecord::Schema.define(version: 20140611150952) do
+
+  create_table "changelogs", force: true do |t|
+    t.text     "title"
+    t.integer  "project_id"
+    t.datetime "github_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "changelogs", ["project_id"], name: "index_changelogs_on_project_id"
+
+  create_table "commits", force: true do |t|
+    t.text     "title"
+    t.string   "user_github_login", null: false
+    t.integer  "project_id",        null: false
+    t.integer  "changelog_id",      null: false
+    t.datetime "github_created_at", null: false
+    t.string   "github_html_url",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "commits", ["github_html_url"], name: "index_commits_on_github_html_url", unique: true
+  add_index "commits", ["project_id"], name: "index_commits_on_project_id"
 
   create_table "projects", force: true do |t|
     t.string   "github_path", default: "", null: false
@@ -47,8 +71,10 @@ ActiveRecord::Schema.define(version: 20140513130608) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "changelog_id"
   end
 
+  add_index "story_points", ["changelog_id"], name: "index_story_points_on_changelog_id"
   add_index "story_points", ["project_id"], name: "index_story_points_on_project_id"
 
   create_table "users", force: true do |t|

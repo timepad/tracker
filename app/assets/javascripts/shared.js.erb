@@ -66,12 +66,22 @@ function init_sync_story_points() {
   });
 }
 
+function init_sync_changelogs() {
+  $('body').on('click', '#sync_changelogs_link', function(e) {
+    $('#current_changelogs').html('<center>' +
+      '<i class="fa fa-refresh fa-spin"></i>&nbsp;Синхронизируются changelogs' +
+      '</center>');
+  });
+}
+
 $(function() {
   init_tooltips();
 
   init_help_tooltips();
 
   init_sync_story_points();
+
+  init_sync_changelogs();
 
   get_issues_from_github();
 
@@ -86,6 +96,8 @@ $(window).bind('page:load', function() {
   init_help_tooltips();
 
   init_sync_story_points();
+
+  init_sync_changelogs();
 
   get_issues_from_github();
 

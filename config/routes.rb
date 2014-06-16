@@ -38,6 +38,10 @@ Rails.application.routes.draw do
       get :sync, :users, :on => :collection
     end
 
+    resources :changelogs, :only => :index do
+      get :sync, :on => :collection
+    end
+
     resources :changelogs, :only => :index
   end
 end

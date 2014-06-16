@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
 
   has_many :story_points, :dependent => :destroy
 
+  has_many :changelogs
+
   class << self
     def pull_requests
       pull_requests = []

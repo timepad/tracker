@@ -1,5 +1,5 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Admin::ChangelogsController do
+RSpec.describe Admin::ChangelogsController, :type => :controller do
 
 end

@@ -5,8 +5,6 @@ class StoryPoint < ActiveRecord::Base
 
   class << self
     def parse_pull_requests pull_requests = []
-      story_points = []
-
       pull_requests.each do |pull_request|
         (parse_pull_request_body pull_request[:body]).each do |data_for_story_point|
           title = parse_title(data_for_story_point)
@@ -67,6 +65,28 @@ class StoryPoint < ActiveRecord::Base
       end
 
       story_points
+    end
+
+    def sync_with_changelogs
+      Project.all.each do |project|
+        changelogs_array = project.changelogs.to_a
+
+        changelogs_array.each_with_index do |changelog, index|
+          date_from = changelog.github_created_at
+
+          date_to = changelogs_array[index + 1].try(:github_created_at)
+
+          if date_to.present?
+            StoryPoint.where('github_closed_at >= ? and github_closed_at < ?', date_from, date_to).
+              where(:project_id => project.id).
+              update_all(:changelog_id => changelog.id)
+          else
+            StoryPoint.where('github_closed_at >= ?', date_from).
+              where(:project_id => project.id).
+              update_all(:changelog_id => changelog.id)
+          end
+        end
+      end
     end
 
     private

@@ -1,0 +1,12 @@
+.list-group
+  li.list-group-item.list-group-item-info
+    | Chagelogs
+
+    .pull-right
+      = link_to 'Синхронизовать changelogs', sync_admin_changelogs_url,
+        :class => 'btn btn-xs btn-success', :remote => true, :id => 'sync_changelogs_link'
+
+  = render changelogs
+
+= paginate changelogs, :params => {:controller => 'admin/changelogs', :action => 'index'},
+  :theme => 'twitter-bootstrap-3'

@@ -1,0 +1,82 @@
+.row
+  .col-md-3
+    h4 Включить
+
+    ul.nav.nav-pills.nav-stacked
+      li class="#{ 'active' if params[:include] == 'pull_request' || !params[:include].present?  }"
+        = link_to 'Только пул реквесты', params.merge(:include => 'pull_request')
+
+      li class="#{ 'active' if params[:include] == 'pull_request_and_commits'  }"
+        = link_to 'Коммиты вне пулреквестов', params.merge(:include => 'pull_request_and_commits')
+
+      li class="#{ 'active' if params[:include] == 'commits'  }"
+        = link_to 'Только коммиты', params.merge(:include => 'commits')
+
+      li
+        p
+
+    h4 Время
+
+    ul.nav.nav-pills.nav-stacked
+      li class="#{ 'active' if params[:date] == ''  }"
+        = link_to 'За всё время', params.merge(:date => '', :date_from => '', :date_to => '')
+
+      li class="#{ 'active' if params[:date] == 'month'  }"
+        = link_to 'За месяц', params.merge(:date => 'month', :date_from => '', :date_to => '')
+
+      li class="#{ 'active' if params[:date] == 'year'  }"
+        = link_to 'За год', params.merge(:date => 'year', :date_from => '', :date_to => '')
+
+      li
+        p
+
+      li
+        = form_tag params.merge(:project => params[:project]), :role => 'form', :method => 'get' do 
+          = hidden_field_tag :"project[]", params[:project]
+          .form-group
+            #datetimepicker1.input-group.date data-date-format="YYYY-MM-DD hh:mm"
+              span.input-group-addon c
+              input#from_date.form-control type="text" name='date_from' value='#{ params[:date_from] }'
+              span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+
+          .form-group
+            #datetimepicker2.input-group.date data-date-format="YYYY-MM-DD hh:mm"
+              span.input-group-addon по
+              input.form-control type="text" name='date_to' value='#{ params[:date_to] }'
+              span.input-group-addon
+                span.glyphicon.glyphicon-calendar
+
+          button.btn.btn-default type="submit" Отфильтровать
+      
+      li
+        p
+
+    h4 Проекты
+
+    = form_tag params, :role => 'form', :method => 'get' do 
+      = hidden_field_tag :date, params[:date]
+      
+      = hidden_field_tag :date_from, params[:date_from]
+
+      = hidden_field_tag :date_to, params[:date_to]
+
+      = select(:project, nil, Project.all.collect { |p| [p.github_path, p.id] },
+        { :include_blank => true }, { :class => 'form-control' } )
+
+      p
+
+      button.btn.btn-default type="submit" Отфильтровать
+
+    p
+
+  .col-md-9
+    #current_changelogs
+      = render 'all_changelogs', :changelogs => @changelogs
+
+javascript:
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+
+    $('#datetimepicker2').datetimepicker();
+  });

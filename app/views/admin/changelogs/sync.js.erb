@@ -1,0 +1,5 @@
+<% if @changelogs.empty? %>
+  $('#current_changelogs').html('Changelogs не найдены');
+<% else %>
+  $('#current_changelogs').html('<%= j render 'all_changelogs', :changelogs => @changelogs %>');
+<% end %>

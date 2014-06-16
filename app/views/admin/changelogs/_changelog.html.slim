@@ -1,0 +1,23 @@
+li.list-group-item
+  .container-fluid
+    .row
+      .col-md-12
+        h3 = changelog.github_created_at.strftime("%Y.%m.%d")
+
+        hr
+
+        h5
+          | Версия
+          | &nbsp;
+          = changelog.title
+
+        ol
+          - changelog.story_points.each do |story_point|
+            li
+              = "[#{story_point.story_point_type}]" if story_point.story_point_type.present?
+
+              = "[#{story_point.story_point_size}]" if story_point.story_point_size.present?
+
+              | &nbsp;
+              
+              = story_point.title
