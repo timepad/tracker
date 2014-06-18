@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611150952) do
+ActiveRecord::Schema.define(version: 20140618150609) do
 
   create_table "changelogs", force: true do |t|
     t.text     "title"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20140611150952) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "changelog_id"
+    t.string   "story_point_from"
+    t.integer  "github_id"
   end
 
   add_index "story_points", ["changelog_id"], name: "index_story_points_on_changelog_id"

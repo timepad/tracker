@@ -13,7 +13,7 @@ class Ability
     if user.admin?
       can :manage, :all
 
-      can :sync, Request
+      can :update_to_github, StoryPoint
     end
   end
 end

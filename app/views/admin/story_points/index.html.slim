@@ -5,3 +5,13 @@
   .col-md-9
     #current_story_points
       = render 'all_story_points', :story_points => @story_points
+
+#story_point_modal.modal.fade aria-hidden="true" aria-labelledby="story_point_modal_label" role="dialog" tabindex="-1" 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+
+        h4#story_point_modal_label.modal-title Редактирование story point с синхронизацией на гитхаб
+      .modal-body
+        #story_point_modal_form

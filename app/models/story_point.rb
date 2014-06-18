@@ -1,7 +1,24 @@
 class StoryPoint < ActiveRecord::Base
   belongs_to :project
 
+  belongs_to :changelog
+
   validates_presence_of :user_github_login, :github_html_url
+
+  def github_body
+    body = []
+
+    story_points = StoryPoint.where(:github_html_url => self.github_html_url)
+
+    story_points.each_with_index do |story_point, index|
+      body << "#{ index + 1 }. #{ "[#{ story_point.story_point_type }]" if story_point.story_point_type.present? }" +
+        "#{ "[#{ story_point.story_point_size }]" if story_point.story_point_size.present? }" +
+        "#{ "[#{ story_point.story_point_from }]" if story_point.story_point_from.present? }" +
+        " #{ story_point.title }"
+    end
+
+    body.join("\r\n")
+  end
 
   class << self
     def parse_pull_requests pull_requests = []
@@ -22,11 +39,15 @@ class StoryPoint < ActiveRecord::Base
             
             story_point.story_point_size = parse_size(data_for_story_point)
 
+            story_point.story_point_from = parse_story_point_from(data_for_story_point)
+
             story_point.github_closed_at = pull_request[:closed_at].to_datetime if pull_request[:closed_at].present?
 
             story_point.github_merged_at = pull_request[:merged_at].to_datetime if pull_request[:merged_at].present?
             
             story_point.story_point_type = story_point_type
+
+            story_point.github_id = pull_request[:number]
           end
 
           if (project = Project.where(:github_path => pull_request[:base][:repo][:full_name]).first).present?
@@ -69,19 +90,19 @@ class StoryPoint < ActiveRecord::Base
 
     def sync_with_changelogs
       Project.all.each do |project|
-        changelogs_array = project.changelogs.to_a
+        changelogs_array = project.changelogs.order('github_created_at ASC').to_a
 
         changelogs_array.each_with_index do |changelog, index|
-          date_from = changelog.github_created_at
+          date_from = changelogs_array[index - 1].github_created_at if index > 0
 
-          date_to = changelogs_array[index + 1].try(:github_created_at)
+          date_to = changelog.github_created_at
 
-          if date_to.present?
-            StoryPoint.where('github_closed_at >= ? and github_closed_at < ?', date_from, date_to).
+          if date_from.present?
+            StoryPoint.where('github_closed_at > ? and github_closed_at <= ?', date_from, date_to).
               where(:project_id => project.id).
               update_all(:changelog_id => changelog.id)
           else
-            StoryPoint.where('github_closed_at >= ?', date_from).
+            StoryPoint.where('github_closed_at <= ?', date_to).
               where(:project_id => project.id).
               update_all(:changelog_id => changelog.id)
           end
@@ -108,6 +129,12 @@ class StoryPoint < ActiveRecord::Base
       info = string_to_parse.scan(/^[0-9]*\.*\s*\[.*\]/m).first.to_s
 
       info.scan(/\[\w*?\]/).first.to_s.sub(']', '').sub('[', '')
+    end
+
+    def parse_story_point_from string_to_parse
+      info = string_to_parse.scan(/^[0-9]*\.*\s*\[.*\]/m).first.to_s
+
+      info.scan(/\[\w*?\]/).try(:[], 2).to_s.sub(']', '').sub('[', '')
     end
   end
 end

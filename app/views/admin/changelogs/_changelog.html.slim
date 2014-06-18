@@ -2,6 +2,8 @@ li.list-group-item
   .container-fluid
     .row
       .col-md-12
+        = link_to 'raw', admin_changelog_url(changelog) 
+
         h3 = changelog.github_created_at.strftime("%Y.%m.%d")
 
         hr

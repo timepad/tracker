@@ -1,7 +1,7 @@
-li.list-group-item
+li.list-group-item id = '#{ "story_point_#{ story_point.id }" }'
   .container-fluid
     .row
-      .col-md-10
+      .col-md-8
         = story_point.user_github_login
         
         | &nbsp;
@@ -20,6 +20,11 @@ li.list-group-item
 
         | &nbsp;
 
+        .label.label-info
+          = story_point.story_point_from
+
+        | &nbsp;
+
         = link_to_if(story_point.title.present?, story_point.title, story_point.github_html_url) do
           = link_to story_point.github_html_url, story_point.github_html_url
 
@@ -27,3 +32,7 @@ li.list-group-item
 
       .col-md-2
         = l story_point.github_closed_at, :format => :long
+
+      .col-md-2
+        = link_to 'Редактировать', edit_admin_story_point_url(story_point),
+          :class => 'btn btn-success', :remote => true

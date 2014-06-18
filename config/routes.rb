@@ -34,14 +34,14 @@ Rails.application.routes.draw do
 
     resources :projects
 
-    resources :story_points, :only => :index do
+    resources :story_points, :only => [:index, :edit] do
       get :sync, :users, :on => :collection
+
+      patch :update_to_github, :on => :member
     end
 
-    resources :changelogs, :only => :index do
+    resources :changelogs, :only => [:index, :show] do
       get :sync, :on => :collection
     end
-
-    resources :changelogs, :only => :index
   end
 end

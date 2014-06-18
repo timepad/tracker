@@ -1,0 +1,9 @@
+<% if @updated %>
+  $('#story_point_modal').modal('hide');
+
+  $('#story_point_<%= @story_point.id %>').replaceWith('<%= j render @story_point %>');
+
+  alert('Story Point обновлена')
+<% else %>
+  alert('Что-то пошло не так')
+<% end %>
