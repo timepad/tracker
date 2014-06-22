@@ -1,5 +1,5 @@
 class Changelog < ActiveRecord::Base
-  belongs_to :project 
+  belongs_to :project
 
   has_many :story_points
 

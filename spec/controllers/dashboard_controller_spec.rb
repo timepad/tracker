@@ -52,13 +52,13 @@ describe DashboardController, :type => :controller do
 
     it { should redirect_to new_user_session_path }
   end
-  
+
   describe 'GET requests' do
     before { get :requests }
 
     it { should redirect_to new_user_session_path }
   end
-  
+
   context 'User' do
     before { sign_in_as_user }
 

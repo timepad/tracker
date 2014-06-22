@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
     rescue_from Exception, :with => lambda { |exception| render_status 500 }
 
     rescue_from CanCan::AccessDenied, :with => lambda { |exception| render_status 403 }
-    
-    rescue_from ActionController::RoutingError, 
-      ActionController::UnknownController, 
+
+    rescue_from ActionController::RoutingError,
+      ActionController::UnknownController,
       ::AbstractController::ActionNotFound,
       ActiveRecord::RecordNotFound, :with => lambda { |exception| render_status 404 }
   end
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def render_status status
     respond_to do |format|
       format.html { render "status_pages/#{ status }", :layout => false, :status => status }
-      
+
       format.all { render :nothing => true, :status => status }
     end
   end

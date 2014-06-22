@@ -31,7 +31,7 @@ describe RequestsController, :type => :controller do
 
       it { should redirect_to new_user_session_path }
     end
-    
+
     describe 'GET show' do
       before { get :show, :id => request }
 
@@ -62,7 +62,7 @@ describe RequestsController, :type => :controller do
       it { should redirect_to new_user_session_path }
     end
   end
-  
+
   context 'Persisted user' do
     before { sign_in user }
 

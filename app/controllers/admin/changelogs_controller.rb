@@ -1,6 +1,6 @@
 class Admin::ChangelogsController < AdminController
   load_and_authorize_resource
-  
+
   def index
     @changelogs = Changelog.fetch_with(params).order('github_created_at DESC').page(params[:page])
   end

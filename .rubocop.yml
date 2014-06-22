@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/spring'
+
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets

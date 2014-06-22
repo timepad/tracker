@@ -27,16 +27,16 @@ class StoryPoint < ActiveRecord::Base
           title = parse_title(data_for_story_point)
 
           story_point_type = parse_story_point_type(data_for_story_point)
-          
+
           title = pull_request[:title] unless title.present? && story_point_type.present?
 
           story_point = StoryPoint.find_or_create_by(:title => title,
             :github_html_url => pull_request[:html_url]) do |story_point|
-            
+
             story_point.user_github_login = pull_request[:user][:login]
-            
+
             story_point.user_github_avatar_url = pull_request[:user][:avatar_url]
-            
+
             story_point.story_point_size = parse_size(data_for_story_point)
 
             story_point.story_point_from = parse_story_point_from(data_for_story_point)
@@ -44,7 +44,7 @@ class StoryPoint < ActiveRecord::Base
             story_point.github_closed_at = pull_request[:closed_at].to_datetime if pull_request[:closed_at].present?
 
             story_point.github_merged_at = pull_request[:merged_at].to_datetime if pull_request[:merged_at].present?
-            
+
             story_point.story_point_type = story_point_type
 
             story_point.github_id = pull_request[:number]

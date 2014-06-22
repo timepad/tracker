@@ -38,7 +38,7 @@ describe Admin::UsersController, :type => :controller do
 
     it { expect { delete :destroy, :id => user }.to raise_error(CanCan::AccessDenied) }
   end
-  
+
   context 'Persisted user' do
     before { sign_in_as_user }
 

@@ -20,18 +20,18 @@ describe Request do
   end
 
   describe '#synced?' do
-    subject { request.synced? }  
+    subject { request.synced? }
 
     describe 'when request is synced' do
       before { request.github_issue_id = 1 }
 
-      it { is_expected.to be true } 
+      it { is_expected.to be true }
     end
 
     describe 'when request is synced' do
       before { request.github_issue_id = nil }
 
-      it { is_expected.to be false } 
+      it { is_expected.to be false }
     end
   end
 end

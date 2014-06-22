@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubocop'
   gem 'quiet_assets'
   gem 'webrick'
   gem 'capistrano'

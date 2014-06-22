@@ -40,7 +40,7 @@ describe Admin::ProjectsController, :type => :controller do
 
     it { expect { delete :destroy, :id => project }.to raise_error(CanCan::AccessDenied) }
   end
-  
+
   context 'Persisted user' do
     before { sign_in_as_user }
 

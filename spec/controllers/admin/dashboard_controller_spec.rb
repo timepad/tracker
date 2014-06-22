@@ -10,7 +10,7 @@ describe Admin::DashboardController, :type => :controller do
   describe 'GET show' do
     it { expect { get :show }.to raise_error(CanCan::AccessDenied) }
   end
-  
+
   context 'User' do
     before { sign_in_as_user }
 
