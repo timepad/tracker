@@ -21,7 +21,7 @@ class Admin::StoryPointsController < AdminController
     if @updated = @story_point.update_attributes(permitted_params)
       Rails.configuration.github_client.
         update_pull_request @story_point.project.github_path, @story_point.github_id,
-        { :body => @story_point.github_body }
+                            :body => @story_point.github_body
     end
   end
 

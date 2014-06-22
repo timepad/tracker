@@ -10,7 +10,7 @@ class Admin::RequestsController < AdminController
   end
 
   def create
-    @request = Request.new permitted_params.merge({ :user_id => current_user.id })
+    @request = Request.new permitted_params.merge(:user_id => current_user.id)
 
     if @request.save
       redirect_to [:admin, @request]

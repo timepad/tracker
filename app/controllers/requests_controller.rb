@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   load_and_authorize_resource :param_method => :permitted_params
 
@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = Request.new permitted_params.merge({ :user_id => current_user.id })
+    @request = Request.new permitted_params.merge(:user_id => current_user.id)
 
     if @request.save
       redirect_to @request

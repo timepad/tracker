@@ -12,14 +12,14 @@ class Changelog < ActiveRecord::Base
       Project.all.each do |project|
         p = 1
 
-        tags_list = Rails.configuration.github_client.tags(project.github_path, { :page => p })
+        tags_list = Rails.configuration.github_client.tags(project.github_path,  :page => p)
 
         while tags_list.present?
           tags += tags_list
 
           p += 1
 
-          tags_list = Rails.configuration.github_client.tags(project.github_path, { :page => p })
+          tags_list = Rails.configuration.github_client.tags(project.github_path,  :page => p)
         end
 
         tags_with_date = []
@@ -28,16 +28,16 @@ class Changelog < ActiveRecord::Base
           tags_with_date << [tag[:name], parse_date_for(project.github_path, tag[:commit][:sha])]
         end
 
-        tags_with_date.sort_by!{ |tag| tag.last }.each_with_index do |tag, index|
+        tags_with_date.sort_by! { |tag| tag.last }.each_with_index do |tag, index|
           date_from = tag.last
 
-          date_to = tags[index+1].present? ? tags_with_date[index+1].last : nil
+          date_to = tags[index + 1].present? ? tags_with_date[index + 1].last : nil
 
           changelog = Changelog.find_or_create_by(:title => tag.first, :project_id => project.id) do |changelog|
             changelog.github_created_at = date_from.to_datetime
           end
 
-          #parse_and_save_commits project.github_path, date_from, date_to, changelog
+          # parse_and_save_commits project.github_path, date_from, date_to, changelog
         end
 
         tags = []
@@ -50,15 +50,15 @@ class Changelog < ActiveRecord::Base
       StoryPoint.sync_with_changelogs
     end
 
-    def parse_and_save_commits project, date_from, date_to, changelog
+    def parse_and_save_commits(project, date_from, date_to, changelog)
       commits = []
 
       p = 1
 
       if date_to.present?
-        commits_list = Rails.configuration.github_client.commits_between project, date_from, date_to, { :page => p }
+        commits_list = Rails.configuration.github_client.commits_between project, date_from, date_to,  :page => p
       else
-        commits_list = Rails.configuration.github_client.commits_before project, date_from, { :page => p }
+        commits_list = Rails.configuration.github_client.commits_before project, date_from,  :page => p
       end
 
       while commits_list.present?
@@ -67,7 +67,7 @@ class Changelog < ActiveRecord::Base
         p += 1
 
         commits_list = Rails.configuration.github_client.
-          commits_before(project, date_to, { :page => p })
+          commits_before(project, date_to,  :page => p)
       end
 
       commits.each do |commit_params|
@@ -75,7 +75,7 @@ class Changelog < ActiveRecord::Base
       end
     end
 
-    def fetch_with params
+    def fetch_with(params)
       case params[:date]
       when 'month'
         changelogs = Changelog.where('github_created_at >= ?', DateTime.now - 1.month)
@@ -88,8 +88,8 @@ class Changelog < ActiveRecord::Base
       if params[:date_from].present? && params[:date_to].present?
         changelogs = changelogs.
           where('github_created_at >= ? and github_created_at <= ?',
-            DateTime.parse(params[:date_from]),
-            DateTime.parse(params[:date_to])
+                DateTime.parse(params[:date_from]),
+                DateTime.parse(params[:date_to])
           )
       elsif params[:date_from].present?
         changelogs.where('github_created_at >= ?', DateTime.parse(params[:date_from]))
@@ -105,7 +105,7 @@ class Changelog < ActiveRecord::Base
     end
 
     private
-    def parse_date_for project, sha
+    def parse_date_for(project, sha)
       details = Rails.configuration.github_client.git_commit project, sha
 
       details[:committer][:date]

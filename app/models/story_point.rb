@@ -8,12 +8,12 @@ class StoryPoint < ActiveRecord::Base
   def github_body
     body = []
 
-    story_points = StoryPoint.where(:github_html_url => self.github_html_url)
+    story_points = StoryPoint.where(:github_html_url => github_html_url)
 
     story_points.each_with_index do |story_point, index|
-      body << "#{ index + 1 }. #{ "[#{ story_point.story_point_type }]" if story_point.story_point_type.present? }" +
-        "#{ "[#{ story_point.story_point_size }]" if story_point.story_point_size.present? }" +
-        "#{ "[#{ story_point.story_point_from }]" if story_point.story_point_from.present? }" +
+      body << "#{ index + 1 }. #{ "[#{ story_point.story_point_type }]" if story_point.story_point_type.present? }" \
+        "#{ "[#{ story_point.story_point_size }]" if story_point.story_point_size.present? }" \
+        "#{ "[#{ story_point.story_point_from }]" if story_point.story_point_from.present? }" \
         " #{ story_point.title }"
     end
 
@@ -21,7 +21,7 @@ class StoryPoint < ActiveRecord::Base
   end
 
   class << self
-    def parse_pull_requests pull_requests = []
+    def parse_pull_requests(pull_requests = [])
       pull_requests.each do |pull_request|
         (parse_pull_request_body pull_request[:body]).each do |data_for_story_point|
           title = parse_title(data_for_story_point)
@@ -31,7 +31,7 @@ class StoryPoint < ActiveRecord::Base
           title = pull_request[:title] unless title.present? && story_point_type.present?
 
           story_point = StoryPoint.find_or_create_by(:title => title,
-            :github_html_url => pull_request[:html_url]) do |story_point|
+                                                     :github_html_url => pull_request[:html_url]) do |story_point|
 
             story_point.user_github_login = pull_request[:user][:login]
 
@@ -59,7 +59,7 @@ class StoryPoint < ActiveRecord::Base
       end
     end
 
-    def fetch_with params
+    def fetch_with(params)
       case params[:date]
       when 'month'
         story_points = StoryPoint.where('github_closed_at >= ?', DateTime.now - 1.month)
@@ -72,8 +72,8 @@ class StoryPoint < ActiveRecord::Base
       if params[:date_from].present? && params[:date_to].present?
         story_points = story_points.
           where('github_closed_at >= ? and github_closed_at <= ?',
-            DateTime.parse(params[:date_from]),
-            DateTime.parse(params[:date_to])
+                DateTime.parse(params[:date_from]),
+                DateTime.parse(params[:date_to])
           )
       elsif params[:date_from].present?
         story_points.where('github_closed_at >= ?', DateTime.parse(params[:date_from]))
@@ -111,27 +111,27 @@ class StoryPoint < ActiveRecord::Base
     end
 
     private
-    def parse_pull_request_body string_to_parse
+    def parse_pull_request_body(string_to_parse)
       (title = string_to_parse.scan(/^[0-9]*\.*\s*\[\w*\]+.*/)).present? ? title : [string_to_parse]
     end
 
-    def parse_title string_to_parse
+    def parse_title(string_to_parse)
       /[0-9]*\.*\s*(\[\w*\])*(.*)/m.match(string_to_parse).try(:[], -1).try(:strip).to_s
     end
 
-    def parse_size string_to_parse
+    def parse_size(string_to_parse)
       info = string_to_parse.scan(/^[0-9]*\.*\s*\[.*\]/m).first.to_s
 
       info.scan(/\[\w*?\]/).try(:[], 1).to_s.sub(']', '').sub('[', '')
     end
 
-    def parse_story_point_type string_to_parse
+    def parse_story_point_type(string_to_parse)
       info = string_to_parse.scan(/^[0-9]*\.*\s*\[.*\]/m).first.to_s
 
       info.scan(/\[\w*?\]/).first.to_s.sub(']', '').sub('[', '')
     end
 
-    def parse_story_point_from string_to_parse
+    def parse_story_point_from(string_to_parse)
       info = string_to_parse.scan(/^[0-9]*\.*\s*\[.*\]/m).first.to_s
 
       info.scan(/\[\w*?\]/).try(:[], 2).to_s.sub(']', '').sub('[', '')

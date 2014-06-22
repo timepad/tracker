@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def ajax_issues
     @issues = []
@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
     @notifications = []
 
     Project.all.each do |project|
-      @notifications += Rails.configuration.github_client.repository_notifications(project.github_path, { :all => true })
+      @notifications += Rails.configuration.github_client.repository_notifications(project.github_path,  :all => true)
     end
   end
 

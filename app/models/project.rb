@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
         p = 1
 
         pull_requests_list = Rails.configuration.github_client.
-          pull_requests(project.github_path, { :state => 'closed', :page => p })
+          pull_requests(project.github_path,  :state => 'closed', :page => p)
 
         while pull_requests_list.present?
           pull_requests += pull_requests_list
@@ -23,7 +23,7 @@ class Project < ActiveRecord::Base
           p += 1
 
           pull_requests_list = Rails.configuration.github_client.
-            pull_requests(project.github_path, { :state => 'closed', :page => p })
+            pull_requests(project.github_path,  :state => 'closed', :page => p)
         end
       end
 
