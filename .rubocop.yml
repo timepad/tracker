@@ -7,3 +7,6 @@ AllCops:
 
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
+
+Style/DotPosition:
+  EnforcedStyle: trailing

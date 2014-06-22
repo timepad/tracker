@@ -33,8 +33,8 @@ class Changelog < ActiveRecord::Base
 
           date_to = tags[index + 1].present? ? tags_with_date[index + 1].last : nil
 
-          changelog = Changelog.find_or_create_by(:title => tag.first, :project_id => project.id) do |changelog|
-            changelog.github_created_at = date_from.to_datetime
+          c = Changelog.find_or_create_by(:title => tag.first, :project_id => project.id) do |changelog|
+            c.github_created_at = date_from.to_datetime
           end
 
           # parse_and_save_commits project.github_path, date_from, date_to, changelog

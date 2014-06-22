@@ -18,7 +18,9 @@ class Admin::StoryPointsController < AdminController
   end
 
   def update_to_github
-    if @updated = @story_point.update_attributes(permitted_params)
+    @updated = @story_point.update_attributes(permitted_params)
+
+    if @updated
       Rails.configuration.github_client.
         update_pull_request @story_point.project.github_path, @story_point.github_id,
                             :body => @story_point.github_body
@@ -26,6 +28,7 @@ class Admin::StoryPointsController < AdminController
   end
 
   private
+
   def permitted_params
     params.require(:story_point).permit(:title, :story_point_type, :story_point_size, :story_point_from)
   end

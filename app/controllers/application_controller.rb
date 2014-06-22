@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def render_status(status)
     respond_to do |format|
       format.html { render "status_pages/#{ status }", :layout => false, :status => status }

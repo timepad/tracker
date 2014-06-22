@@ -31,23 +31,23 @@ class StoryPoint < ActiveRecord::Base
           title = pull_request[:title] unless title.present? && story_point_type.present?
 
           story_point = StoryPoint.find_or_create_by(:title => title,
-                                                     :github_html_url => pull_request[:html_url]) do |story_point|
+                                                     :github_html_url => pull_request[:html_url]) do |s|
 
-            story_point.user_github_login = pull_request[:user][:login]
+            s.user_github_login = pull_request[:user][:login]
 
-            story_point.user_github_avatar_url = pull_request[:user][:avatar_url]
+            s.user_github_avatar_url = pull_request[:user][:avatar_url]
 
-            story_point.story_point_size = parse_size(data_for_story_point)
+            s.story_point_size = parse_size(data_for_story_point)
 
-            story_point.story_point_from = parse_story_point_from(data_for_story_point)
+            s.story_point_from = parse_story_point_from(data_for_story_point)
 
-            story_point.github_closed_at = pull_request[:closed_at].to_datetime if pull_request[:closed_at].present?
+            s.github_closed_at = pull_request[:closed_at].to_datetime if pull_request[:closed_at].present?
 
-            story_point.github_merged_at = pull_request[:merged_at].to_datetime if pull_request[:merged_at].present?
+            s.github_merged_at = pull_request[:merged_at].to_datetime if pull_request[:merged_at].present?
 
-            story_point.story_point_type = story_point_type
+            s.story_point_type = story_point_type
 
-            story_point.github_id = pull_request[:number]
+            s.github_id = pull_request[:number]
           end
 
           if (project = Project.where(:github_path => pull_request[:base][:repo][:full_name]).first).present?
@@ -111,6 +111,7 @@ class StoryPoint < ActiveRecord::Base
     end
 
     private
+
     def parse_pull_request_body(string_to_parse)
       (title = string_to_parse.scan(/^[0-9]*\.*\s*\[\w*\]+.*/)).present? ? title : [string_to_parse]
     end
