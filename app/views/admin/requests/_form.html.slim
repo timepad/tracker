@@ -19,7 +19,7 @@
     = f.label 'Проект', :class => 'col-sm-2 control-label'
 
     .col-sm-10
-      = f.collection_select :project_id, Project.all, :id, :github_path, 
+      = f.collection_select :project_id, Project.all, :id, :github_path,
         { :promt => true }, { :class => 'form-control' }
 
   hr

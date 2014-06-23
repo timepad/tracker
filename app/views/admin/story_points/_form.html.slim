@@ -4,25 +4,25 @@
   .form-group
     label for="story_point_title" Название
 
-    = f.text_field :title, :class => 'form-control', :id => 'story_point_title' 
+    = f.text_field :title, :class => 'form-control', :id => 'story_point_title'
 
   .form-group
     label for="story_point_type" Тип
-    
+
     = f.text_field :story_point_type, :class => 'form-control', :id => 'story_point_type'
 
   .form-group
     label for="story_point_size" Размер
-    
+
     = f.text_field :story_point_size, :class => 'form-control', :id => 'story_point_size'
 
   .form-group
     label for="story_point_from" Откуда
-    
+
     = f.text_field :story_point_from, :class => 'form-control', :id => 'story_point_from'
-  
+
   = f.submit 'Обновить', :class => 'btn btn-success'
 
   | &nbsp;
-  
+
   button.btn.btn-default data-dismiss="modal" type="button"  Close

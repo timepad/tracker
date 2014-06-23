@@ -40,6 +40,7 @@ end
 
 group :development do
   gem 'rubocop'
+  gem 'rails_best_practices'
   gem 'quiet_assets'
   gem 'webrick'
   gem 'capistrano'

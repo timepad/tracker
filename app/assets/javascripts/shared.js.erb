@@ -1,6 +1,6 @@
 function get_issues_from_github() {
   if ($('#issues').size() > 0) {
-    $.ajax({ 
+    $.ajax({
       url: "<%= Rails.application.routes.url_helpers.ajax_issues_dashboard_path(:format => :js) %>", 
       type: 'GET',
       complete: function(e) {

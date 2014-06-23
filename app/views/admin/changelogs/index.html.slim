@@ -31,7 +31,7 @@
         p
 
       li
-        = form_tag params.merge(:project => params[:project]), :role => 'form', :method => 'get' do 
+        = form_tag params.merge(:project => params[:project]), :role => 'form', :method => 'get' do
           = hidden_field_tag :"project[]", params[:project]
           .form-group
             #datetimepicker1.input-group.date data-date-format="YYYY-MM-DD hh:mm"
@@ -48,15 +48,15 @@
                 span.glyphicon.glyphicon-calendar
 
           button.btn.btn-default type="submit" Отфильтровать
-      
+
       li
         p
 
     h4 Проекты
 
-    = form_tag params, :role => 'form', :method => 'get' do 
+    = form_tag params, :role => 'form', :method => 'get' do
       = hidden_field_tag :date, params[:date]
-      
+
       = hidden_field_tag :date_from, params[:date_from]
 
       = hidden_field_tag :date_to, params[:date_to]

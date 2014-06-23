@@ -3,16 +3,16 @@ li.list-group-item id = '#{ "story_point_#{ story_point.id }" }'
     .row
       .col-md-8
         = story_point.user_github_login
-        
+
         | &nbsp;
-        
+
         = image_tag story_point.user_github_avatar_url + 's=18'
 
         | &nbsp;
 
         .label.label-info
           = story_point.story_point_type
-        
+
         | &nbsp;
 
         .label.label-info
