@@ -28,6 +28,7 @@ end
 group :production do
   gem 'unicorn'
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
@@ -39,6 +40,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'heroku'
   gem 'rubocop'
   gem 'rails_best_practices'
   gem 'quiet_assets'
@@ -53,3 +55,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
+
+ruby '2.1.2'
