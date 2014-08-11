@@ -5,7 +5,7 @@ h5
 
   | &nbsp;
 
-  = image_tag (issue.user.avatar_url + 's=20')
+  = image_tag (issue.user.avatar_url + '&s=20')
   
   | &nbsp;
   
@@ -16,7 +16,7 @@ span.text-muted
 
   | &nbsp;
 
-  = image_tag (issue.assignee.avatar_url + 's=20') if issue.assignee.try(:avatar_url).present?
+  = image_tag (issue.assignee.avatar_url + '&s=20') if issue.assignee.try(:avatar_url).present?
 
   | &nbsp;
 
