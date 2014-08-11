@@ -1,17 +1,18 @@
-| ##
+| ## 
 = @changelog.github_created_at.strftime("%d.%m.%Y")
 |  ##
 
+br
 p
 
-| _Версия
+| _Версия 
 = @changelog.title
 | _
 
 - @changelog.story_points.each do |story_point|
   p
 
-  | 1.
+  | 1. 
   - if story_point.story_point_type.present?
     | [
     = story_point.story_point_type
