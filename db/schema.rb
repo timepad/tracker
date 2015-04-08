@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140618150609) do
 
-  create_table "changelogs", force: true do |t|
+  create_table "changelogs", force: :cascade do |t|
     t.text     "title"
     t.integer  "project_id"
     t.datetime "github_created_at"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140618150609) do
 
   add_index "changelogs", ["project_id"], name: "index_changelogs_on_project_id"
 
-  create_table "commits", force: true do |t|
+  create_table "commits", force: :cascade do |t|
     t.text     "title"
     t.string   "user_github_login", null: false
     t.integer  "project_id",        null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140618150609) do
   add_index "commits", ["github_html_url"], name: "index_commits_on_github_html_url", unique: true
   add_index "commits", ["project_id"], name: "index_commits_on_project_id"
 
-  create_table "projects", force: true do |t|
+  create_table "projects", force: :cascade do |t|
     t.string   "github_path", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140618150609) do
 
   add_index "projects", ["github_path"], name: "index_projects_on_github_path", unique: true
 
-  create_table "requests", force: true do |t|
+  create_table "requests", force: :cascade do |t|
     t.string   "title",           default: "", null: false
     t.text     "content"
     t.datetime "created_at"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140618150609) do
   add_index "requests", ["project_id"], name: "index_requests_on_project_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
-  create_table "story_points", force: true do |t|
+  create_table "story_points", force: :cascade do |t|
     t.text     "title"
     t.string   "user_github_login",      null: false
     t.string   "user_github_avatar_url"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20140618150609) do
   add_index "story_points", ["changelog_id"], name: "index_story_points_on_changelog_id"
   add_index "story_points", ["project_id"], name: "index_story_points_on_project_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
