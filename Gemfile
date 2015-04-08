@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.1'
+
+ruby '2.2.1'
 
 gem 'russian'
 gem 'devise'
@@ -10,7 +12,7 @@ gem 'uglifier'
 gem 'therubyracer'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'sass-rails', github: 'rails/sass-rails'
+gem 'sass-rails'
 gem 'slim'
 gem 'slim-rails'
 gem 'bootstrap-sass'
@@ -20,15 +22,18 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'sprockets', '3.0.0.rc.2'
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', :require => false
 end
 
 group :production do
-  gem 'unicorn'
+  gem 'rack-cache'
   gem 'pg'
   gem 'rails_12factor'
+  gem 'puma'
+  gem 'dalli'
 end
 
 group :development, :test do
@@ -36,6 +41,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'capybara'
+  gem 'spring'
   gem 'sqlite3'
 end
 
@@ -48,6 +54,8 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
+  gem 'bullet'
+  gem 'fasterer'
 end
 
 group :test do
@@ -55,5 +63,3 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
 end
-
-ruby '2.1.2'
