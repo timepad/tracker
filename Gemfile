@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.1'
 
-ruby '2.2.1'
+ruby '2.2.2'
 
 gem 'russian'
 gem 'devise'
@@ -22,7 +22,8 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
-gem 'sprockets', '3.0.0.rc.2'
+gem 'sprockets'
+gem 'figaro'
 
 group :doc do
   gem 'sdoc', :require => false
