@@ -24,6 +24,7 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'sprockets'
 gem 'figaro'
+gem 'sqlite3'
 
 group :doc do
   gem 'sdoc', :require => false
@@ -35,6 +36,7 @@ group :production do
   gem 'rails_12factor'
   gem 'puma'
   gem 'dalli'
+  gem 'unicorn'
 end
 
 group :development, :test do
@@ -43,7 +45,6 @@ group :development, :test do
   gem 'pry'
   gem 'capybara'
   gem 'spring'
-  gem 'sqlite3'
 end
 
 group :development do
@@ -54,6 +55,7 @@ group :development do
   gem 'webrick'
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'bullet'
   gem 'fasterer'

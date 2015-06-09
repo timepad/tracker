@@ -20,7 +20,7 @@ role :db,  %w{ deployer@123.45.67.89 }
 server '123.45.67.89', user: 'deployer', roles: %w{web app}
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.1.2@issues_tracker'
+set :rvm_ruby_version, '2.2.2@tracker'
 
 # Custom SSH Options
 # ==================

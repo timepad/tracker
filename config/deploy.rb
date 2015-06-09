@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+lock '3.4.0'
 
 set :application, 'tracker'
 set :repo_url, 'git@github.com:timepad/tracker.git'
@@ -22,8 +22,12 @@ set :deploy_to, '/home/deployer/projects/tracker'
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, %w(config/database.yml config/unicorn.rb config/secrets.yml)
-set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system)
+set :linked_files, fetch(:linked_files, []).push('config/application.yml', 'config/unicorn.rb')
+set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+
+set :bundle_path,     nil
+set :bundle_binstubs, nil
+set :bundle_flags,    '--system'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
