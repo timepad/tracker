@@ -23,6 +23,6 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: flow_maximization_production
+  database: tracker_production
   username: <%= Rails.application.secrets.postgresql['username'] %>
   password: <%= Rails.application.secrets.postgresql['password'] %>
