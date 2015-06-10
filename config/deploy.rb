@@ -23,7 +23,7 @@ set :deploy_to, '/home/deployer/projects/tracker'
 # set :pty, true
 
 set :linked_files, fetch(:linked_files, []).push('config/application.yml', 'config/unicorn.rb')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 set :bundle_path,     nil
 set :bundle_binstubs, nil
